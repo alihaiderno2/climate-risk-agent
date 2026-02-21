@@ -1,0 +1,165 @@
+city,lat,lng,country,iso2,admin_name,population,population_proper
+Karachi,24.8667,67.05,Pakistan,PK,Sindh,14835000.0,14835000.0
+Lahore,31.5497,74.3436,Pakistan,PK,Punjab,11021000.0,11021000.0
+Sialkot,32.5,74.5167,Pakistan,PK,Punjab,3893672.0,3893672.0
+Faisalabad,31.4167,73.0833,Pakistan,PK,Punjab,3203846.0,3203846.0
+Rawalpindi,33.6,73.0667,Pakistan,PK,Punjab,2098231.0,2098231.0
+Peshawar,34.0078,71.5733,Pakistan,PK,Khyber Pakhtunkhwa,1970042.0,1970042.0
+Mingaora,34.7761,72.3611,Pakistan,PK,Khyber Pakhtunkhwa,1860310.0,1860310.0
+Multan,30.1956,71.4753,Pakistan,PK,Punjab,1606481.0,1606481.0
+Gujranwala,32.15,74.1833,Pakistan,PK,Punjab,1569090.0,1569090.0
+Islamabad,33.7,73.1667,Pakistan,PK,Islāmābād,1365000.0,1365000.0
+Quetta,30.1872,67.0125,Pakistan,PK,Balochistān,1140000.0,1140000.0
+Bahawalpur,29.4,71.6833,Pakistan,PK,Punjab,681696.0,681696.0
+Sargodha,32.0836,72.6711,Pakistan,PK,Punjab,602631.0,602631.0
+New Mirpur,33.1833,73.7667,Pakistan,PK,Azad Kashmir,523500.0,523500.0
+Chiniot,31.72,72.9789,Pakistan,PK,Punjab,477781.0,477781.0
+Sukkur,27.7,68.8667,Pakistan,PK,Sindh,476776.0,476776.0
+Larkana,27.55,68.2167,Pakistan,PK,Sindh,435817.0,435817.0
+Shekhupura,31.7131,73.9783,Pakistan,PK,Punjab,411834.0,411834.0
+Jhang,31.3053,72.3261,Pakistan,PK,Punjab,365198.0,365198.0
+Rahimyar Khan,28.4167,70.3,Pakistan,PK,Punjab,353203.0,353203.0
+Gujrat,32.5667,74.0833,Pakistan,PK,Punjab,328512.0,328512.0
+Kasur,31.1156,74.4467,Pakistan,PK,Punjab,314617.0,314617.0
+Mardan,34.1983,72.0458,Pakistan,PK,Khyber Pakhtunkhwa,300424.0,300424.0
+Dera Ghazi Khan,30.0561,70.6344,Pakistan,PK,Punjab,264742.0,264742.0
+Nawabshah,26.25,68.4167,Pakistan,PK,Sindh,263102.0,263102.0
+Sahiwal,30.6667,73.1,Pakistan,PK,Punjab,247706.0,247706.0
+Mirpur Khas,25.5333,69.0,Pakistan,PK,Sindh,236961.0,236961.0
+Okara,30.8081,73.4458,Pakistan,PK,Punjab,232386.0,232386.0
+Mandi Burewala,30.15,72.6833,Pakistan,PK,Punjab,203454.0,203454.0
+Jacobabad,28.2839,68.4361,Pakistan,PK,Sindh,200815.0,200815.0
+Kohat,33.5869,71.4422,Pakistan,PK,Khyber Pakhtunkhwa,170800.0,170800.0
+Muridke,31.7597,73.8378,Pakistan,PK,Punjab,163268.0,163268.0
+Muzaffargarh,30.0667,71.2,Pakistan,PK,Punjab,163268.0,163268.0
+Khanpur,28.65,70.65,Pakistan,PK,Punjab,160308.0,160308.0
+Gojra,31.15,72.6833,Pakistan,PK,Punjab,157863.0,157863.0
+Mandi Bahauddin,32.5833,73.5,Pakistan,PK,Punjab,157352.0,157352.0
+Abbottabad,24.95,67.2,Pakistan,PK,Khyber Pakhtunkhwa,148587.0,148587.0
+Dadu,28.7378,105.2281,Pakistan,PK,Sindh,146179.0,146179.0
+Khuzdar,27.8,66.6167,Pakistan,PK,Balochistān,228112.0,228112.0
+Pakpattan,30.35,73.4,Pakistan,PK,Punjab,139525.0,139525.0
+Tando Allahyar,25.4667,68.7167,Pakistan,PK,Sindh,133487.0,133487.0
+Vihari,30.0333,72.35,Pakistan,PK,Punjab,128034.0,128034.0
+Jaranwala,31.3333,73.4333,Pakistan,PK,Punjab,127973.0,127973.0
+Kamalia,30.7333,72.65,Pakistan,PK,Punjab,121401.0,121401.0
+Kot Addu,30.47,70.9644,Pakistan,PK,Punjab,120479.0,120479.0
+Nowshera,34.0164,71.9747,Pakistan,PK,Khyber Pakhtunkhwa,118594.0,118594.0
+Swabi,34.12,72.4722,Pakistan,PK,Khyber Pakhtunkhwa,115018.0,115018.0
+Dera Ismail Khan,31.8328,70.9025,Pakistan,PK,Khyber Pakhtunkhwa,109686.0,109686.0
+Chaman,30.9169,66.4597,Pakistan,PK,Balochistān,107660.0,107660.0
+Charsadda,34.1453,71.7314,Pakistan,PK,Khyber Pakhtunkhwa,105414.0,105414.0
+Kandhkot,28.2333,69.1833,Pakistan,PK,Sindh,105011.0,105011.0
+Hasilpur,29.7122,72.5553,Pakistan,PK,Punjab,99171.0,99171.0
+Muzaffarabad,34.37,73.4711,Pakistan,PK,Azad Kashmir,96000.0,96000.0
+Mianwali,32.5833,71.55,Pakistan,PK,Punjab,95007.0,95007.0
+Jalalpur Jattan,32.6333,74.2,Pakistan,PK,Punjab,90130.0,90130.0
+Bhakkar,31.6333,71.0667,Pakistan,PK,Punjab,88472.0,88472.0
+Zhob,31.3411,69.4481,Pakistan,PK,Balochistān,88356.0,50537.0
+Kharian,32.7806,74.275,Pakistan,PK,Punjab,85765.0,85765.0
+Mian Channun,30.45,72.3667,Pakistan,PK,Punjab,82586.0,82586.0
+Jamshoro,25.4283,68.2822,Pakistan,PK,Sindh,80000.0,80000.0
+Pattoki,31.0167,73.85,Pakistan,PK,Punjab,77210.0,77210.0
+Harunabad,29.6133,73.1389,Pakistan,PK,Punjab,77206.0,77206.0
+Toba Tek Singh,30.9667,72.4833,Pakistan,PK,Punjab,75943.0,75943.0
+Shakargarr,32.2628,75.1583,Pakistan,PK,Punjab,73160.0,73160.0
+Hujra,25.6472,68.6111,Pakistan,PK,Punjab,70204.0,70204.0
+Kabirwala,30.4,71.8667,Pakistan,PK,Punjab,70123.0,70123.0
+Mansehra,34.3333,73.2,Pakistan,PK,Khyber Pakhtunkhwa,69085.0,69085.0
+Lala Musa,32.6889,73.9611,Pakistan,PK,Punjab,67283.0,67283.0
+Nankana Sahib,31.4475,73.6972,Pakistan,PK,Punjab,63073.0,63073.0
+Bannu,32.9894,70.6058,Pakistan,PK,Khyber Pakhtunkhwa,62191.0,62191.0
+Timurgara,34.8281,71.8408,Pakistan,PK,Khyber Pakhtunkhwa,58050.0,58050.0
+Parachinar,33.8975,70.1,Pakistan,PK,Khyber Pakhtunkhwa,55685.0,55685.0
+Gwadar,25.1156,62.3283,Pakistan,PK,Balochistān,51901.0,23364.0
+Abdul Hakim,34.7394,62.2444,Pakistan,PK,Punjab,51494.0,51494.0
+Hassan Abdal,33.8219,72.6856,Pakistan,PK,Punjab,50044.0,50044.0
+Tank,32.2217,70.3803,Pakistan,PK,Khyber Pakhtunkhwa,44996.0,44996.0
+Hangu,39.2489,117.7892,Pakistan,PK,Khyber Pakhtunkhwa,39766.0,39766.0
+Risalpur Cantonment,30.1333,72.1167,Pakistan,PK,Khyber Pakhtunkhwa,36653.0,36653.0
+Karak,39.7194,43.0514,Pakistan,PK,Khyber Pakhtunkhwa,35844.0,35844.0
+Kundian,32.45,71.4667,Pakistan,PK,Punjab,35406.0,35406.0
+Umarkot,25.3667,69.7333,Pakistan,PK,Sindh,35059.0,35059.0
+Chitral,35.8422,71.7819,Pakistan,PK,Khyber Pakhtunkhwa,31100.0,31100.0
+Dainyor,35.9333,74.3833,Pakistan,PK,Gilgit-Baltistan,25000.0,25000.0
+Kulachi,31.9286,70.4592,Pakistan,PK,Khyber Pakhtunkhwa,24738.0,24738.0
+Kotli,33.1917,74.0556,Pakistan,PK,Azad Kashmir,21462.0,21462.0
+Gilgit,35.9222,74.3097,Pakistan,PK,Gilgit-Baltistan,8851.0,8851.0
+Hyderabad City,17.3753,78.4744,Pakistan,PK,Sindh,2059000.0,2059000.0
+Narowal,32.1,74.8833,Pakistan,PK,Punjab,1950954.0,1950954.0
+Khanewal,30.3,71.9333,Pakistan,PK,Punjab,281890.0,281890.0
+Jhelum,32.9333,73.7333,Pakistan,PK,Punjab,312426.0,312426.0
+Haripur,33.9972,72.9336,Pakistan,PK,Khyber Pakhtunkhwa,92920.0,92920.0
+Shikarpur,27.95,68.6333,Pakistan,PK,Sindh,1231481.0,1231481.0
+Rawala Kot,33.8667,73.7667,Pakistan,PK,Azad Kashmir,62205.0,62000.0
+Hafizabad,32.0667,73.6833,Pakistan,PK,Punjab,1319909.0,1319909.0
+Lodhran,29.2569,71.55,Pakistan,PK,Punjab,1699693.0,1699693.0
+Malakand,34.5656,71.9311,Pakistan,PK,Khyber Pakhtunkhwa,826250.0,826250.0
+Attock City,33.7722,72.3683,Pakistan,PK,Punjab,176554.0,176554.0
+Batgram,34.2203,71.6261,Pakistan,PK,Khyber Pakhtunkhwa,335984.0,335984.0
+Matiari,25.6,68.45,Pakistan,PK,Sindh,849383.0,849383.0
+Ghotki,28.0167,69.3167,Pakistan,PK,Sindh,1772609.0,1772609.0
+Naushahro Firoz,26.8333,68.1167,Pakistan,PK,Sindh,1777082.0,1777082.0
+Alpurai,34.9033,72.6425,Pakistan,PK,Khyber Pakhtunkhwa,366772.0,366772.0
+Bagh,33.3386,44.3939,Pakistan,PK,Azad Kashmir,371919.0,371919.0
+Daggar,32.6333,71.35,Pakistan,PK,Khyber Pakhtunkhwa,354809.0,354809.0
+Bahawalnagar,29.9833,73.2667,Pakistan,PK,Punjab,3550342.0,3550342.0
+Leiah,30.9667,70.9333,Pakistan,PK,Punjab,2102386.0,2102386.0
+Tando Muhammad Khan,25.1333,68.5333,Pakistan,PK,Sindh,1032058.0,1032058.0
+Chakwal,32.9333,72.8667,Pakistan,PK,Punjab,1132608.0,1132608.0
+Khushab,32.2967,72.3525,Pakistan,PK,Punjab,1501089.0,1501089.0
+Badin,24.65,68.8333,Pakistan,PK,Sindh,1947081.0,1947081.0
+Lakki,32.6075,70.9125,Pakistan,PK,Khyber Pakhtunkhwa,1040856.0,1040856.0
+Rajanpur,29.1,70.3167,Pakistan,PK,Punjab,2381049.0,2381049.0
+Dera Allahyar,33.0667,58.9833,Pakistan,PK,Balochistān,594558.0,594558.0
+Shahdad Kot,30.425,57.7106,Pakistan,PK,Sindh,120687.0,120687.0
+Pishin,30.5803,66.9961,Pakistan,PK,Balochistān,835482.0,835482.0
+Sanghar,26.0333,68.95,Pakistan,PK,Sindh,2308465.0,2308465.0
+Upper Dir,30.2969,-8.4797,Pakistan,PK,Khyber Pakhtunkhwa,1083566.0,1083566.0
+Thatta,24.7469,67.9242,Pakistan,PK,Sindh,101833.0,101833.0
+Dera Murad Jamali,25.4278,68.5708,Pakistan,PK,Balochistān,265822.0,265822.0
+Kohlu,29.9,69.25,Pakistan,PK,Balochistān,260220.0,260220.0
+Mastung,29.8,66.85,Pakistan,PK,Balochistān,313271.0,313271.0
+Dasu,31.8183,75.6597,Pakistan,PK,Khyber Pakhtunkhwa,222282.0,222282.0
+Palri,34.5717,73.8972,Pakistan,PK,Azad Kashmir,191251.0,191251.0
+Loralai,30.3667,68.6,Pakistan,PK,Balochistān,59601.0,59601.0
+Barkhan,29.9,69.5167,Pakistan,PK,Balochistān,14425.0,14425.0
+Musa Khel Bazar,30.8667,69.8167,Pakistan,PK,Balochistān,182275.0,182275.0
+Ziarat,30.3431,67.7422,Pakistan,PK,Balochistān,189535.0,189535.0
+Gandava,28.6127,67.4854,Pakistan,PK,Balochistān,24130.0,24130.0
+Sibi,45.8,24.15,Pakistan,PK,Balochistān,224148.0,224148.0
+Dera Bugti,29.0333,69.15,Pakistan,PK,Balochistān,355274.0,355274.0
+Eidgah,35.3471,74.8563,Pakistan,PK,Gilgit-Baltistan,52000.0,52000.0
+Turbat,26.0028,63.0506,Pakistan,PK,Balochistān,268625.0,268625.0
+Uthal,25.8072,66.6219,Pakistan,PK,Balochistān,88933.0,88933.0
+Chilas,34.7914,70.8169,Pakistan,PK,Gilgit-Baltistan,323643.0,323643.0
+Kalat,29.0333,66.5833,Pakistan,PK,Balochistān,271560.0,271560.0
+Panjgur,26.9667,64.1,Pakistan,PK,Balochistān,509781.0,509781.0
+Gakuch,36.1667,73.75,Pakistan,PK,Gilgit-Baltistan,25083.0,25083.0
+Qila Saifullah,30.7042,68.3611,Pakistan,PK,Balochistān,380200.0,380200.0
+Kharan,28.5833,65.4167,Pakistan,PK,Balochistān,260352.0,260352.0
+Aliabad,23.5667,91.05,Pakistan,PK,Gilgit-Baltistan,1516.0,1516.0
+Awaran,35.55,68.8086,Pakistan,PK,Balochistān,178958.0,178958.0
+Dalbandin,28.8833,64.4167,Pakistan,PK,Balochistān,269192.0,269192.0
+Mithi,24.7333,69.8,Pakistan,PK,Sindh,52376.0,52376.0
+Umerkot,28.4931,70.0972,Pakistan,PK,Sindh,1158284.0,1158284.0
+Skardu,35.3,75.6167,Pakistan,PK,Gilgit Baltistan,312875.0,312875.0
+Hunza,36.2667,74.6833,Pakistan,PK,Gilgit Baltistan,52652.0,52652.0
+Mingora,34.7761,72.3611,Pakistan,PK,Khyber Pakhtunkhwa,361112.0,361112.0
+Swat,12.7167,103.2167,Pakistan,PK,Khyber Pakhtunkhwa,2687384.0,2687384.0
+Port Qasim,26.5256,43.6911,Pakistan,PK,Sindh,2000.0,2000.0
+Korangi,24.7853,67.1369,Pakistan,PK,Sindh,3127976.0,3127976.0
+Rohri,27.6833,68.9,Pakistan,PK,Sindh,92135.0,92135.0
+Pasni,25.2639,63.4744,Pakistan,PK,Sindh,43494.0,43494.0
+Ormara,25.2106,64.6375,Pakistan,PK,Balochistan,16553.0,16553.0
+Kech,34.5956,66.8711,Pakistan,PK,Khyber Pakhtunkhwa,1060931.0,1060931.0
+Diamer,16.5167,-16.2833,Pakistan,PK,Gilgit Baltistan,323643.0,323643.0
+Mirpur,25.5333,69.0,Pakistan,PK,Azad Kashmir,1651018.0,1651018.0
+Kohala,31.0667,72.8333,Pakistan,PK,Azad Kashmir,8500.0,8500.0
+Sheikhupura,31.7131,73.9783,Pakistan,PK,Punjab,591424.0,591424.0
+Vehari,30.0333,72.35,Pakistan,PK,Punjab,130692.0,130692.0
+Sadiqabad,28.3,70.1333,Pakistan,PK,Punjab,1381759.0,1381759.0
+Tando Jam,25.4333,68.5333,Pakistan,PK,Sindh,74303.0,74303.0
+Tando Adam,25.7667,68.6667,Pakistan,PK,Sindh,174291.0,174291.0
+Murree,33.9,73.4,Pakistan,PK,Punjab,372947.0,372947.0
+Gujar Khan,33.2667,73.3167,Pakistan,PK,Punjab,781578.0,781578.0
