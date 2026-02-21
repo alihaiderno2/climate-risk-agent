@@ -1,7 +1,9 @@
 import sys
 import os
 import pandas as pd
+import requests
 from dotenv import load_dotenv
+from datetime import datetime, timedelta
 load_dotenv()
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -13,7 +15,7 @@ if parent_dir not in sys.path:
 from smolagents import LiteLLMModel, ToolCallingAgent
 from typing import TypedDict, List, Dict, Any
 from langgraph.graph import StateGraph, END
-from graph.tools import calculate_safe_distance
+from graph.tools import find_nearest_safe_cities
 
 token = os.getenv("HUGGINGFACEHUB_API_TOKEN")
 ai_model = LiteLLMModel(
@@ -35,19 +37,15 @@ class GraphState(TypedDict):
     personalized_recommendations: List[str]
     safe_cities: List[Dict[str, Any]] 
 
-# ==========================================
-# 2. Define Dummy Node Functions
-# ==========================================
 
 def fetch_data_node(state: GraphState) -> Dict[str, Any]:
     city = state.get("city", "")
-    print(f"📥 Fetching baseline data and weather for: {city}...")
+    print(f"📥 Fetching baseline, real-time, forecast, and historical weather for: {city}...")
     
     city_baseline = {}
     try:
         current_dir = os.path.dirname(os.path.abspath(__file__))
         csv_path = os.path.abspath(os.path.join(current_dir, '..', '..', 'pk_cities_cleanedAccApi_data.csv'))
-        
         df = pd.read_csv(csv_path)
         city_row = df[df['city'].str.lower() == city.lower()]
         
@@ -58,27 +56,73 @@ def fetch_data_node(state: GraphState) -> Dict[str, Any]:
                 "population": city_row.iloc[0]['population'],
                 "province": city_row.iloc[0]['admin_name']
             }
-            print(f"   [DATA] Found {city}: Lat={city_baseline['lat']}, Lng={city_baseline['lng']}, Pop={city_baseline['population']}")
-        else:
-            print(f"   [WARNING] City '{city}' not found in CSV.")
-            
     except Exception as e:
         print(f"   [ERROR] Could not load CSV: {e}")
 
-    # 2. Mocking the Weather API (Backend Engineer will replace this with a real API later)
-    # Since we don't have the API key plugged in yet, we'll return a dynamic mock based on the concern
-    concern = state.get("concern", "").lower()
-    mock_temp = 42 if concern == "heatwave" else 25
-    mock_aqi = 300 if concern == "aqi" else 50
+    API_KEY = "6303d6d5eedc4d27b1512638250310"  
+    live_weather, forecast_weather, historical_weather = {}, [], []
     
-    live_weather = {"temp": mock_temp, "aqi": mock_aqi, "description": "Sunny"}
+    try:
+        url_forecast = f"http://api.weatherapi.com/v1/forecast.json?key={API_KEY}&q={city}&days=3&aqi=yes"
+        resp = requests.get(url_forecast, timeout=5)
+        
+        
+        if resp.status_code != 200:
+            print(f"   [WEATHER API REJECTED REQUEST]: {resp.text}")
+            raise Exception("API Request Failed")
+            
+        resp_f = resp.json()
+        
+        live_weather = {
+            "temp": resp_f["current"]["temp_c"],
+            "condition": resp_f["current"]["condition"]["text"],
+            "humidity": resp_f["current"]["humidity"],
+            "wind_kph": resp_f["current"]["wind_kph"],
+            "aqi": resp_f["current"]["air_quality"].get("pm2_5", 50)
+        }
+        
+        for day in resp_f.get("forecast", {}).get("forecastday", []):
+            forecast_weather.append({
+                "date": day["date"],
+                "max_temp": day["day"]["maxtemp_c"],
+                "min_temp": day["day"]["mintemp_c"],
+                "condition": day["day"]["condition"]["text"]
+            })
+
+        # B. Fetch Historical Weather (Yesterday)
+        yesterday = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
+        url_history = f"http://api.weatherapi.com/v1/history.json?key={API_KEY}&q={city}&dt={yesterday}"
+        resp_h = requests.get(url_history, timeout=5)
+        
+        if resp_h.status_code == 200:
+            for day in resp_h.json().get("forecast", {}).get("forecastday", []):
+                historical_weather.append({
+                    "date": day["date"],
+                    "avg_temp": day["day"]["avgtemp_c"],
+                    "condition": day["day"]["condition"]["text"]
+                })
+            
+        print(f"   [WEATHER SUCCESS] {live_weather['temp']}°C, Forecast Days: {len(forecast_weather)}, History Days: {len(historical_weather)}")
+        
+    except Exception as e:
+        print(f"   [FALLBACK TRIGGERED] Error connecting to WeatherAPI: {e}")
+        concern = state.get("concern", "").lower()
+        live_weather = {
+            "temp": 42 if concern == "heatwave" else 25, 
+            "aqi": 300 if concern == "aqi" else 50, 
+            "condition": "Sunny"
+        }
+        forecast_weather = [{"date": "Tomorrow", "max_temp": 43, "min_temp": 30, "condition": "Sunny"}]
+        historical_weather = [{"date": "Yesterday", "avg_temp": 41, "condition": "Sunny"}]
     
     return {
         "city_baseline": city_baseline,
         "live_weather": live_weather, 
-        "historical_weather": []
+        "forecast_weather": forecast_weather,
+        "historical_weather": historical_weather
     }
-
+    
+    
 def flood_agent_node(state: GraphState) -> Dict[str, Any]:
     print("Running Flood Assessment...")
     return {"risk_assessments": {**state.get("risk_assessments", {}), "Flood": "High"}}
@@ -94,7 +138,6 @@ def heatwave_agent_node(state: GraphState) -> Dict[str, Any]:
     live_weather = state.get("live_weather", {})
     temp = live_weather.get("temp", "Unknown")
     
-    # Write the prompt for the AI
     prompt = f"""
     You are an expert climate risk assessor. 
     The city of {city} is currently experiencing a temperature of {temp}°C.
@@ -102,16 +145,13 @@ def heatwave_agent_node(state: GraphState) -> Dict[str, Any]:
     Return ONLY a single word: Low, Medium, or High. Do not explain.
     """
     
-    # Wrap the prompt in the format smolagents expects
     messages = [{"role": "user", "content": prompt}]
-    
-    # Call the Hugging Face model
+
     ai_response = ai_model(messages)
     
-    # Extract the text from the response object
     decision = ai_response.content.strip()
     
-    print(f"✅ AI Decision: Heatwave Risk is {decision}")
+    print(f"AI Decision: Heatwave Risk is {decision}")
     
     # Update the state with the AI's actual decision
     return {"risk_assessments": {**state.get("risk_assessments", {}), "Heatwave": decision}}
@@ -121,44 +161,71 @@ def aqi_agent_node(state: GraphState) -> Dict[str, Any]:
     return {"risk_assessments": {**state.get("risk_assessments", {}), "AQI": "Low"}}
 
 def supervisor_node(state: GraphState) -> Dict[str, Any]:
-    print("Supervisor evaluating overall severity...")
-    return {"overall_severity": "High"}
+    print("Supervisor evaluating overall severity based on AI assessments...")
+    
+    assessments = state.get("risk_assessments", {})
+    
+    overall_severity = "Low"
+    for hazard, risk_level in assessments.items():
+        if "high" in risk_level.lower():
+            overall_severity = "High"
+            break
+        elif "medium" in risk_level.lower() and overall_severity != "High":
+            overall_severity = "Medium"
+            
+    print(f"   [SUPERVISOR DECISION] Overall Emergency Level is: {overall_severity}")
+    return {"overall_severity": overall_severity}
 
 def emergency_relocation_node(state: GraphState) -> Dict[str, Any]:
-    print("🚨 CRITICAL: Relocation Agent Activated...")
+    print(" CRITICAL: Relocation Agent Activated...")
     
     city = state.get("city", "Lahore")
     
-    # Initialize the true Agent with the tool we imported from tools.py
     relocation_agent = ToolCallingAgent(
-        tools=[calculate_safe_distance], 
+        tools=[find_nearest_safe_cities], 
         model=ai_model
     )
     
     prompt = f"""
     The user is in {city} and facing a severe climate emergency.
-    You must find a safe relocation city. Consider 'Islamabad' as an option.
-    You MUST use your calculate_safe_distance tool to verify the distance before recommending it.
-    Return a short plan stating the safe city and the distance.
+    You MUST use the `find_nearest_safe_cities` tool to get a list of the 3 closest safe cities.
+    Review the tool's result, pick the absolute best city for relocation, and write a short, clear evacuation plan stating the chosen city and its distance.
     """
     
-    print("🤖 Agent thinking and using tools...")
+    print("🤖 Agent thinking and scanning all cities...")
     
-    # Let the agent run its ReAct (Reason + Act) loop
     decision = relocation_agent.run(prompt)
     
     print(f"✅ AI Relocation Plan: {decision}")
     
-    return {"safe_cities": [{"city": "Islamabad", "plan": decision}]}
-
+    return {"safe_cities": [{"plan": decision}]}
 def personalization_node(state: GraphState) -> Dict[str, Any]:
     profession = state.get("profession", "Citizen")
-    print(f"Generating personalized advice for a {profession}...")
-    return {"personalized_recommendations": ["Evacuate immediately."]}
+    concern = state.get("concern", "Unknown Hazard")
+    city = state.get("city", "Unknown City")
+    severity = state.get("overall_severity", "Low")
+    
+    print(f"Generating personalized advice for a {profession} facing {concern}...")
+    
+    prompt = f"""
+    You are a disaster response expert. The user is a {profession} in {city} facing a {severity} severity {concern}.
+    Write 3 quick, highly actionable bullet points of advice specifically tailored to their profession.
+    For example, if they are a Farmer, talk about livestock and crops. If a Doctor, talk about medical supplies.
+    Keep it concise. Do not use formatting like markdown asterisks, just return plain text bullet points.
+    """
+    
+    
+    messages = [{"role": "user", "content": prompt}]
+    
 
-# ==========================================
-# 3. Define the Routing Logic (Edges)
-# ==========================================
+    ai_response = ai_model(messages)
+    advice_text = ai_response.content.strip()
+    
+    advice_list = [line.strip() for line in advice_text.split('\n') if line.strip()]
+    
+    return {"personalized_recommendations": advice_list}
+
+
 
 def route_to_specific_hazard(state: GraphState) -> str:
     concern = state.get("concern", "").lower()
@@ -180,9 +247,6 @@ def route_based_on_severity(state: GraphState) -> str:
         return "emergency_relocation"
     return "personalization"
 
-# ==========================================
-# 4. Build and Compile the Graph
-# ==========================================
 
 workflow = StateGraph(GraphState)
 
@@ -226,12 +290,10 @@ workflow.add_edge("personalization", END)
 
 app = workflow.compile()
 
-# ==========================================
-# 5. Testing the Graph Execution
-# ==========================================
+
 if __name__ == "__main__":
     print("\n" + "="*50)
-    print("🚀 TESTING LANGGRAPH WORKFLOW ROUTING")
+    print(" TESTING LANGGRAPH WORKFLOW ROUTING")
     print("="*50)
 
     initial_state = {
