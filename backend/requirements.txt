@@ -1,0 +1,6 @@
+fastapi 
+uvicorn 
+smolagents 
+langgraph 
+pandas 
+python-dotenv 
