@@ -5,7 +5,6 @@ import {
   Briefcase,
   AlertTriangle,
   ChevronRight,
-  Activity,
   X,
   ShieldCheck,
 } from "lucide-react";
