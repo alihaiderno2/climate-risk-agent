@@ -4,4 +4,4 @@
 ## 🛠️ Stack
 - **Brain:** LangGraph + Hugging Face (`smolagents`)
 - **Backend:** FastAPI
-- **Frontend:** React (Vite) + Tailwind
+- **Frontend:** React (Vite) + Bootstrap
