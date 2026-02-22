@@ -10,7 +10,11 @@ from graph.workflow import app as langgraph_app
 
 # 1. This is like your Django project setup
 app = FastAPI()
-
+@app.get("/")
+@app.post("/")
+async def root_endpoint():
+    print("⚠️ Something just hit the root endpoint!")
+    return {"message": "Climate Risk API is Live! Please send requests to /api/analyze-risk"}
 # 2. This is like django-cors-headers. It allows your React frontend to talk to this backend.
 app.add_middleware(
     CORSMiddleware,
