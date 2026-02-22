@@ -9,7 +9,7 @@ import {
   CheckCircle2,
   Package,
   Send,
-  Radio
+  Radio,
 } from "lucide-react";
 
 const RiskReport = ({ data }) => {
@@ -32,17 +32,20 @@ const RiskReport = ({ data }) => {
   const handleSendEmail = async () => {
     setEmailStatus("sending");
     try {
-      const response = await fetch("https://climate-risk-agent-loyo.onrender.com/api/send-alert", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          dispatch_text: data.official_dispatch,
-          logistics: data.relief_logistics || {},
-          // Change this to whatever email you want to show the judges!
-          recipient_email: "alihaiderno2@gmail.com", 
-        }),
-      });
-      
+      const response = await fetch(
+        "https://climate-risk-agent-loyo.onrender.com/api/send-alert",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            dispatch_text: data.official_dispatch,
+            logistics: data.relief_logistics || {},
+            // Change this to whatever email you want to show the judges!
+            recipient_email: "alihaiderno2@gmail.com",
+          }),
+        },
+      );
+
       if (response.ok) {
         setEmailStatus("success");
       } else {
@@ -129,10 +132,12 @@ const RiskReport = ({ data }) => {
                 style={{ minWidth: "140px" }}
               >
                 <div className="small text-muted mb-1">
-                  {day.date === "Tomorrow" ? "Tomorrow" : new Date(day.date).toLocaleDateString("en-GB", {
-                    weekday: "short",
-                    day: "numeric",
-                  })}
+                  {day.date === "Tomorrow"
+                    ? "Tomorrow"
+                    : new Date(day.date).toLocaleDateString("en-GB", {
+                        weekday: "short",
+                        day: "numeric",
+                      })}
                 </div>
                 <div className="fw-bold text-primary">{day.max_temp}°</div>
                 <div className="small text-muted">{day.min_temp}°</div>
@@ -160,7 +165,9 @@ const RiskReport = ({ data }) => {
                   className="card border-0 shadow-sm p-3 rounded-4 bg-white text-dark h-100"
                 >
                   <div className="d-flex align-items-start">
-                    <div className={`badge bg-${severityColor} rounded-pill me-3 mt-1`}>
+                    <div
+                      className={`badge bg-${severityColor} rounded-pill me-3 mt-1`}
+                    >
                       {idx + 1}
                     </div>
                     <p className="mb-0 small fw-medium">
@@ -183,8 +190,13 @@ const RiskReport = ({ data }) => {
               <ul className="list-unstyled mb-0">
                 {data.survival_kit.map((kitItem, idx) => (
                   <li key={idx} className="mb-2 small d-flex align-items-start">
-                    <input type="checkbox" className="form-check-input me-2 mt-1" />
-                    <span className="fw-medium">{kitItem.replace("• ", "")}</span>
+                    <input
+                      type="checkbox"
+                      className="form-check-input me-2 mt-1"
+                    />
+                    <span className="fw-medium">
+                      {kitItem.replace("• ", "")}
+                    </span>
                   </li>
                 ))}
               </ul>
@@ -196,7 +208,6 @@ const RiskReport = ({ data }) => {
       {/* EVACUATION & PDMA ALERTS (Only show if High Risk) */}
       {data.overall_severity === "High" && (
         <motion.div variants={item} className="row g-3">
-          
           {/* Evacuation Route */}
           {data.safe_cities?.length > 0 && (
             <div className="col-12">
@@ -215,15 +226,20 @@ const RiskReport = ({ data }) => {
           {/* PDMA SitRep Dashboard */}
           {data.official_dispatch && (
             <div className="col-12">
-              <div className="card border-0 shadow-sm rounded-4 p-4" style={{ backgroundColor: "#0f172a", color: "#e2e8f0" }}>
+              <div
+                className="card border-0 shadow-sm rounded-4 p-4"
+                style={{ backgroundColor: "#0f172a", color: "#e2e8f0" }}
+              >
                 <div className="d-flex justify-content-between align-items-center border-bottom border-secondary pb-2 mb-3">
                   <div className="d-flex align-items-center text-success">
                     <Radio size={20} className="me-2" />
-                    <h5 className="mb-0 fw-bold font-monospace">PDMA SITREP TERMINAL</h5>
+                    <h5 className="mb-0 fw-bold font-monospace">
+                      PDMA SITREP TERMINAL
+                    </h5>
                   </div>
                   <span className="badge bg-danger">CLASSIFIED</span>
                 </div>
-                
+
                 <p className="small font-monospace opacity-75 mb-4 lh-lg">
                   {data.official_dispatch}
                 </p>
@@ -232,19 +248,25 @@ const RiskReport = ({ data }) => {
                   <div className="col-4">
                     <div className="bg-dark p-2 rounded border border-secondary">
                       <div className="small text-info">WATER (L)</div>
-                      <div className="fw-bold">{data.relief_logistics?.water_liters?.toLocaleString()}</div>
+                      <div className="fw-bold">
+                        {data.relief_logistics?.water_liters?.toLocaleString()}
+                      </div>
                     </div>
                   </div>
                   <div className="col-4">
                     <div className="bg-dark p-2 rounded border border-secondary">
                       <div className="small text-warning">TENTS</div>
-                      <div className="fw-bold">{data.relief_logistics?.tents?.toLocaleString()}</div>
+                      <div className="fw-bold">
+                        {data.relief_logistics?.tents?.toLocaleString()}
+                      </div>
                     </div>
                   </div>
                   <div className="col-4">
                     <div className="bg-dark p-2 rounded border border-secondary">
                       <div className="small text-danger">MED KITS</div>
-                      <div className="fw-bold">{data.relief_logistics?.medical_kits?.toLocaleString()}</div>
+                      <div className="fw-bold">
+                        {data.relief_logistics?.medical_kits?.toLocaleString()}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -253,12 +275,18 @@ const RiskReport = ({ data }) => {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={handleSendEmail}
-                  disabled={emailStatus === "sending" || emailStatus === "success"}
+                  disabled={
+                    emailStatus === "sending" || emailStatus === "success"
+                  }
                   className={`btn w-100 fw-bold py-3 d-flex justify-content-center align-items-center ${
                     emailStatus === "success" ? "btn-success" : "btn-danger"
                   }`}
                 >
-                  {emailStatus === "" && <><Send size={18} className="me-2" /> DISPATCH ALERT TO NGO</>}
+                  {emailStatus === "" && (
+                    <>
+                      <Send size={18} className="me-2" /> DISPATCH ALERT TO NGO
+                    </>
+                  )}
                   {emailStatus === "sending" && "TRANSMITTING..."}
                   {emailStatus === "success" && " ALERT TRANSMITTED"}
                   {emailStatus === "error" && " TRANSMISSION FAILED - RETRY"}
@@ -268,7 +296,6 @@ const RiskReport = ({ data }) => {
           )}
         </motion.div>
       )}
-
     </motion.div>
   );
 };
