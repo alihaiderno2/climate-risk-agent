@@ -90,8 +90,10 @@ def fetch_data_node(state: GraphState) -> Dict[str, Any]:
             "historical_weather": []
         }
 
-    # --- 2. Real WeatherAPI Logic (Only runs if DEMO_MODE = False) ---
-    API_KEY = os.getenv("WEATHER_API_KEY", "YOUR_API_KEY_HERE")
+    API_KEY = os.getenv("WEATHER_API_KEY")
+
+    if not API_KEY:
+        print(" WARNING: WEATHER_API_KEY is missing from the .env file!")
     live_weather, forecast_weather, historical_weather = {}, [], []
     
     try:
