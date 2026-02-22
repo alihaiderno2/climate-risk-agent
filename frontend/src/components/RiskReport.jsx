@@ -32,7 +32,7 @@ const RiskReport = ({ data }) => {
   const handleSendEmail = async () => {
     setEmailStatus("sending");
     try {
-      const response = await fetch("https://climate-risk-api.onrender.com/api/send-alert", {
+      const response = await fetch("https://climate-risk-agent-loyo.onrender.com/api/send-alert", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

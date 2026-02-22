@@ -64,7 +64,7 @@ const MainForm = () => {
     setProgress(20);
     try {
       setTimeout(() => setProgress(50), 400);
-      const response = await fetch("https://climate-risk-api.onrender.com/api/analyze-risk", {
+      const response = await fetch("https://climate-risk-agent-loyo.onrender.com/api/analyze-risk", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
