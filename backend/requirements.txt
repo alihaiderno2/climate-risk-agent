@@ -1,6 +1,8 @@
-fastapi 
-uvicorn 
-smolagents 
-langgraph 
-pandas 
-python-dotenv 
+fastapi
+uvicorn
+pydantic
+requests
+pandas
+smolagents
+litellm
+langgraph
